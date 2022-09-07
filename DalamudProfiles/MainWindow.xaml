@@ -1,0 +1,27 @@
+﻿<Window x:Class="DalamudProfiles.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DalamudProfiles"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+    ui:WindowHelper.UseModernWindowStyle="True">
+    <Grid>
+        <ListBox x:Name="installedList" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="19,97,608,45" SelectionMode="Multiple" FontSize="10"/>
+        <Label x:Name="lbl_installed" Content="Installed Plogons:" HorizontalAlignment="Left" Margin="19,73,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_deinstall" Content="Deinstall &gt;" Margin="239,147,0,0" VerticalAlignment="Top" Click="btn_deinstall_Click"/>
+        <Button x:Name="btn_install" Content="&lt; Install" Margin="247,215,0,0" VerticalAlignment="Top" Click="btn_install_Click"/>
+        <Button x:Name="btn_refresh" Content="Refresh Lists" Margin="234,63,0,0" VerticalAlignment="Top" Click="btn_refresh_Click"/>
+        <ListBox x:Name="uninstalledList" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="400,97,190,45" FontSize="10" SelectionMode="Multiple"/>
+        <Button x:Name="btn_startLauncher" Content="Start XIVLauncher" Margin="217,357,0,0" VerticalAlignment="Top" Click="btn_startLauncher_Click"/>
+        <Label x:Name="lbl_uninstalled" Content="Uninstalled Plogons:" HorizontalAlignment="Left" Margin="400,73,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="combo_profileList" Margin="615,97,0,0" Width="120"/>
+        <Button x:Name="btn_saveProfile" Content="Save" Margin="646,282,0,0" VerticalAlignment="Top" Click="btn_saveProfile_Click"/>
+        <TextBox x:Name="tb_newProfile" HorizontalAlignment="Left" Margin="646,328,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btn_loadProfile" Content="Load" Margin="742,97,0,0" VerticalAlignment="Top" Click="btn_loadProfile_Click"/>
+        <CheckBox x:Name="chbx_admin" Content="Launch as Admin" Margin="217,328,0,0" VerticalAlignment="Top" FontSize="12" Height="18" Width="134"/>
+
+    </Grid>
+</Window>
