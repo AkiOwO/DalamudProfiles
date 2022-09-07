@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DalamudProfiles"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="DalamudProfiles" Height="450" Width="800"
         xmlns:ui="http://schemas.modernwpf.com/2019"
     ui:WindowHelper.UseModernWindowStyle="True">
     <Grid>
@@ -22,6 +22,7 @@
         <TextBox x:Name="tb_newProfile" HorizontalAlignment="Left" Margin="646,328,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btn_loadProfile" Content="Load" Margin="742,97,0,0" VerticalAlignment="Top" Click="btn_loadProfile_Click"/>
         <CheckBox x:Name="chbx_admin" Content="Launch as Admin" Margin="217,328,0,0" VerticalAlignment="Top" FontSize="12" Height="18" Width="134"/>
+        <Button x:Name="btn_settings" Content="Settings" Margin="727,389,0,0" VerticalAlignment="Top" Click="btn_settings_Click"/>
 
     </Grid>
 </Window>

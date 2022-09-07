@@ -1,0 +1,18 @@
+﻿<Window x:Class="DalamudProfiles.Settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DalamudProfiles"
+        mc:Ignorable="d"
+        Title="Settings" Height="450" Width="800"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="True">
+    <Grid>
+        <Label x:Name="lbl_pluginPath" Content="Label" HorizontalAlignment="Left" Margin="145,72,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_changePluginPath" Content="Change" Margin="39,66,0,0" VerticalAlignment="Top" Click="btn_changePluginPath_Click"/>
+        <Label x:Name="Plugin_Path" Content="Plugin Path" HorizontalAlignment="Left" Margin="39,46,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_uninstalledpath" Content="Label" HorizontalAlignment="Left" Margin="145,111,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_xivlauncherpath" Content="Label" HorizontalAlignment="Left" Margin="145,156,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

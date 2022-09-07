@@ -5,6 +5,9 @@ using System.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
+using ModernWpf;
+using System.Windows.Media;
+using System.Threading;
 
 namespace DalamudProfiles
 {
@@ -13,10 +16,9 @@ namespace DalamudProfiles
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        private string pluginPath = @"C:\Users\Aki\AppData\Roaming\XIVLauncher\installedPlugins\";
-        private string uninstalledPluginPath = @"C:\Users\Aki\Desktop\uninstalledPlugins\";
-        private string xivLauncherPath = @"C:\Users\Aki\AppData\Local\XIVLauncher\XIVLauncher.exe";
+        private string pluginPath;
+        private string uninstalledPluginPath;
+        private string xivLauncherPath;
 
         private static Configuration configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
         private static KeyValueConfigurationCollection settings = configFile.AppSettings.Settings;
@@ -24,13 +26,65 @@ namespace DalamudProfiles
         public MainWindow()
         {
             InitializeComponent();
-            loadPlugins();
+            checkFolders();
+            checkPaths("SETTINGSuninstalledpath");
+            checkPaths("SETTINGSpluginpath");
+            checkPaths("SETTINGSxivlauncherpath");
+            checkPaths("lel");
             getAllProfiles();
+            loadPlugins();
         }
 
         public void moveStuff()
         {
             var test = installedList.SelectedItems;
+        }
+
+        public void checkFolders()
+        {
+            string userName = Environment.UserName;
+            string path = @"C:\Users\" + userName + @"\AppData\Roaming\XIVLauncher\uninstalledPlugins\";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+                //Thread.Sleep(2000);
+            }
+        }
+
+        public void checkPaths(string key)
+        {
+            string userName = Environment.UserName;
+
+            try
+            {
+                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                var settings = configFile.AppSettings.Settings;
+                if (settings[key] == null && key == "SETTINGSpluginpath")
+                {
+                    settings.Add(key, @"C:\Users\" + userName + @"\AppData\Roaming\XIVLauncher\installedPlugins\");
+                }
+                else if (settings[key] == null && key == "SETTINGSuninstalledpath")
+                {
+                    settings.Add(key, @"C:\Users\" + userName + @"\AppData\Roaming\XIVLauncher\uninstalledPlugins\");
+                }
+                else if (settings[key] == null && key == "SETTINGSxivlauncherpath")
+                {
+                    settings.Add(key, @"C:\Users\" + userName + @"\AppData\Local\XIVLauncher\XIVLauncher.exe");
+                }
+                else if (settings["SETTINGSPluginpath"] != null && settings["SETTINGSuninstalledpath"] != null && settings["SETTINGSxivlauncherpath"] != null)
+                {
+                    pluginPath = settings["SETTINGSpluginpath"].Value;
+                    uninstalledPluginPath = settings["SETTINGSuninstalledpath"].Value;
+                    xivLauncherPath = settings["SETTINGSxivlauncherpath"].Value;
+                }
+
+                configFile.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+            }
+            catch (ConfigurationErrorsException)
+            {
+                Console.WriteLine("Error writing app settings");
+            }
         }
 
         public void loadPlugins()
@@ -224,6 +278,12 @@ namespace DalamudProfiles
                 Console.WriteLine("Error reading app settings");
             }
             loadPlugins();
+        }
+
+        private void btn_settings_Click(object sender, RoutedEventArgs e)
+        {
+            Settings settings = new Settings();
+            settings.Show();
         }
     }
 }
